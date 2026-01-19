@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description"
+		content="An interactive web animation showcase featuring animated animals in a forest setting, demonstrating modern CSS animation techniques.">
+	<meta name="keywords" content="CSS animations, web development, HTML5, interactive design">
+	<meta name="author" content="Martin Maina">
+	<meta name="theme-color" content="#2d5016">
+
+	<!-- Open Graph meta tags for social media sharing -->
+	<meta property="og:title" content="Animation Showcase - Forest Animals">
+	<meta property="og:description"
+		content="An interactive web animation featuring animated animals in a forest setting">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="favicon.png">
+
+	<title>Animation Showcase - Forest Animals</title>
+
+	<!-- Favicon for browser tab -->
+	<link rel="icon" type="image/png" href="favicon.png">
+	<link rel="shortcut icon" type="image/png" href="favicon.png">
+
+	<style>
+		/* Global reset and base styles for consistency across browsers */
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		/* Main body styling with full-screen background */
+		body {
+			min-height: 100vh;
+			background-image: url('GIFS/Forest.jpg');
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+			background-position: center;
+			overflow: hidden;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			position: relative;
+		}
+
+		/* Dark overlay to enhance visibility and add depth */
+		body::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+			pointer-events: none;
+			z-index: 1;
+		}
+
+		/* Container for the animation scene */
+		.animation-container {
+			position: relative;
+			width: 100%;
+			height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 2;
+		}
+
+		/* Track where animals will move across the screen */
+		.animation-track {
+			position: absolute;
+			bottom: 20%;
+			width: 100%;
+			height: 150px;
+			display: flex;
+			align-items: center;
+		}
+
+		/* Base styling for all animated animals */
+		.animal {
+			position: absolute;
+			filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+			transition: transform 0.3s ease;
+		}
+
+		/* Slight bounce effect when hovering over animals */
+		.animal:hover {
+			transform: translateY(-10px) scale(1.05);
+		}
+
+		/* Individual animal styling with unique sizes */
+		.dog {
+			width: 150px;
+			height: 150px;
+			animation: slideRight 8s ease-in-out infinite;
+			animation-delay: 0s;
+		}
+
+		.cat {
+			width: 100px;
+			height: 100px;
+			animation: slideRight 10s ease-in-out infinite;
+			animation-delay: 2s;
+		}
+
+		.rat {
+			width: 100px;
+			height: 100px;
+			animation: slideRight 12s ease-in-out infinite;
+			animation-delay: 4s;
+		}
+
+		/* Keyframe animation for animals moving from left to right */
+		@keyframes slideRight {
+			0% {
+				left: -200px;
+				transform: translateX(0) scaleX(1);
+			}
+
+			48% {
+				transform: scaleX(1);
+			}
+
+			50% {
+				left: calc(100% + 200px);
+				transform: scaleX(1);
+			}
+
+			52% {
+				transform: scaleX(-1);
+			}
+
+			98% {
+				transform: scaleX(-1);
+			}
+
+			100% {
+				left: -200px;
+				transform: translateX(0) scaleX(1);
+			}
+		}
+
+		/* Project title overlay at the top */
+		.title-overlay {
+			position: absolute;
+			top: 40px;
+			left: 50%;
+			transform: translateX(-50%);
+			z-index: 10;
+			text-align: center;
+		}
+
+		.title-overlay h1 {
+			color: #ffffff;
+			font-size: 3rem;
+			font-weight: 700;
+			text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+			letter-spacing: 2px;
+			margin-bottom: 10px;
+			animation: fadeIn 2s ease-in-out;
+		}
+
+		.title-overlay p {
+			color: #f0f0f0;
+			font-size: 1.2rem;
+			text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+			animation: fadeIn 2s ease-in-out 0.5s both;
+		}
+
+		/* Fade-in animation for title elements */
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+				transform: translateY(-20px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		/* Footer with attribution */
+		.footer {
+			position: absolute;
+			bottom: 20px;
+			right: 30px;
+			z-index: 10;
+			color: #ffffff;
+			font-size: 0.9rem;
+			text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+			animation: fadeIn 2s ease-in-out 1s both;
+		}
+
+		.footer a {
+			color: #4da6ff;
+			text-decoration: none;
+			transition: color 0.3s ease;
+		}
+
+		.footer a:hover {
+			color: #80bfff;
+			text-decoration: underline;
+		}
+
+		/* Responsive design for tablets and smaller screens */
+		@media (max-width: 768px) {
+			.title-overlay h1 {
+				font-size: 2rem;
+			}
+
+			.title-overlay p {
+				font-size: 1rem;
+			}
+
+			.dog {
+				width: 100px;
+				height: 100px;
+			}
+
+			.cat,
+			.rat {
+				width: 70px;
+				height: 70px;
+			}
+
+			.animation-track {
+				bottom: 30%;
+				height: 100px;
+			}
+
+			.footer {
+				font-size: 0.8rem;
+				right: 15px;
+			}
+		}
+
+		/* Responsive design for mobile devices */
+		@media (max-width: 480px) {
+			.title-overlay h1 {
+				font-size: 1.5rem;
+				letter-spacing: 1px;
+			}
+
+			.title-overlay p {
+				font-size: 0.9rem;
+			}
+
+			.dog {
+				width: 80px;
+				height: 80px;
+			}
+
+			.cat,
+			.rat {
+				width: 60px;
+				height: 60px;
+			}
+
+			.footer {
+				font-size: 0.7rem;
+				bottom: 10px;
+				right: 10px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Main title and description overlay -->
+	<div class="title-overlay">
+		<h1>Forest Animation</h1>
+		<p>Watch the animals explore their natural habitat</p>
+	</div>
+
+	<!-- Primary animation container holding the scene -->
+	<div class="animation-container">
+		<!-- The track where animals move back and forth -->
+		<div class="animation-track">
+			<!-- Dog character with continuous movement animation -->
+			<img src="Unscreen/Dog-unscreen.gif" alt="Animated dog walking" class="animal dog">
+
+			<!-- Cat character with slightly delayed animation -->
+			<img src="Unscreen/Cat-unscreen.gif" alt="Animated cat walking" class="animal cat">
+
+			<!-- Rat character with the longest delay for staggered effect -->
+			<img src="Unscreen/Rat-unscreen.gif" alt="Animated rat walking" class="animal rat">
+		</div>
+	</div>
+
+	<!-- Footer with creator attribution -->
+	<div class="footer">
+		Created by <a href="https://github.com/Martin888Maina" target="_blank" rel="noopener noreferrer">Martin
+			Maina</a>
+	</div>
+</body>
+
+</html>
