@@ -19,7 +19,6 @@
 
 	<title>Animation Showcase - Forest Animals</title>
 
-	<!-- Favicons -->
 	<link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
 	<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -27,14 +26,13 @@
 	<link rel="manifest" href="favicon/site.webmanifest">
 
 	<style>
-		/* Global reset and base styles for consistency across browsers */
+		/* Eliminates inconsistent default margins and padding across browsers; border-box prevents padding from expanding element dimensions */
 		* {
 			margin: 0;
 			padding: 0;
 			box-sizing: border-box;
 		}
 
-		/* Main body styling with full-screen background */
 		body {
 			min-height: 100vh;
 			background-image: url('GIFS/Forest.jpg');
@@ -47,7 +45,7 @@
 			position: relative;
 		}
 
-		/* Dark overlay to enhance visibility and add depth */
+		/* Gradient overlay improves text contrast against the variable-brightness forest background without obscuring it */
 		body::before {
 			content: '';
 			position: absolute;
@@ -60,7 +58,6 @@
 			z-index: 1;
 		}
 
-		/* Container for the animation scene */
 		.animation-container {
 			position: relative;
 			width: 100%;
@@ -71,7 +68,7 @@
 			z-index: 2;
 		}
 
-		/* Track where animals will move across the screen */
+		/* Positioned at 20% from the bottom to place animals in the visual foreground of the scene */
 		.animation-track {
 			position: absolute;
 			bottom: 20%;
@@ -81,19 +78,17 @@
 			align-items: center;
 		}
 
-		/* Base styling for all animated animals */
 		.animal {
 			position: absolute;
 			filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
 			transition: transform 0.3s ease;
 		}
 
-		/* Slight bounce effect when hovering over animals */
+		/* Hover lift provides interactivity feedback without interrupting the running CSS animation loop */
 		.animal:hover {
 			transform: translateY(-10px) scale(1.05);
 		}
 
-		/* Individual animal styling with unique sizes */
 		.dog {
 			width: 150px;
 			height: 150px;
@@ -115,7 +110,7 @@
 			animation-delay: 4s;
 		}
 
-		/* Keyframe animation for animals moving from left to right */
+		/* Animals exit off-screen right; the 48–52% window briefly holds the transform to flip scaleX, preventing a jarring instant direction change on the return pass */
 		@keyframes slideRight {
 			0% {
 				left: -200px;
@@ -145,7 +140,6 @@
 			}
 		}
 
-		/* Project title overlay at the top */
 		.title-overlay {
 			position: absolute;
 			top: 40px;
@@ -172,7 +166,6 @@
 			animation: fadeIn 2s ease-in-out 0.5s both;
 		}
 
-		/* Fade-in animation for title elements */
 		@keyframes fadeIn {
 			from {
 				opacity: 0;
@@ -185,7 +178,6 @@
 			}
 		}
 
-		/* Footer with attribution */
 		.footer {
 			position: absolute;
 			bottom: 20px;
@@ -208,7 +200,6 @@
 			text-decoration: underline;
 		}
 
-		/* Responsive design for tablets and smaller screens */
 		@media (max-width: 768px) {
 			.title-overlay h1 {
 				font-size: 2rem;
@@ -240,7 +231,6 @@
 			}
 		}
 
-		/* Responsive design for mobile devices */
 		@media (max-width: 480px) {
 			.title-overlay h1 {
 				font-size: 1.5rem;
@@ -272,28 +262,24 @@
 </head>
 
 <body>
-	<!-- Main title and description overlay -->
 	<div class="title-overlay">
 		<h1>Forest Animation</h1>
 		<p>Watch the animals explore their natural habitat</p>
 	</div>
 
-	<!-- Primary animation container holding the scene -->
 	<div class="animation-container">
-		<!-- The track where animals move back and forth -->
 		<div class="animation-track">
-			<!-- Dog character with continuous movement animation -->
+			<!-- Dog: 8s cycle, no delay — anchors the animation timing for the other animals -->
 			<img src="Unscreen/Dog-unscreen.gif" alt="Animated dog walking" class="animal dog">
 
-			<!-- Cat character with slightly delayed animation -->
+			<!-- Cat: 10s cycle, 2s delay — staggered to avoid overlap with the dog -->
 			<img src="Unscreen/Cat-unscreen.gif" alt="Animated cat walking" class="animal cat">
 
-			<!-- Rat character with the longest delay for staggered effect -->
+			<!-- Rat: 12s cycle, 4s delay — longest stagger ensures all three animals are visually separated -->
 			<img src="Unscreen/Rat-unscreen.gif" alt="Animated rat walking" class="animal rat">
 		</div>
 	</div>
 
-	<!-- Footer with creator attribution -->
 	<div class="footer">
 		Created by <a href="https://github.com/Martin888Maina" target="_blank" rel="noopener noreferrer">Martin
 			Maina</a>
